@@ -4,9 +4,60 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Shopify Image App using Unsplash API</title>
 </head>
 <body>
+
+  <form class="searchBar" action="" method="GET">
+    <input id="searchInput" type="text" name="searchInput" placeholder="Search for images" aria-label="Search">
+    <button class="searchButton" type="submit">Search</button>
+  </form>
+
+  <div class="displayImages">
+    <ul id="imagesList"></ul>
+  </div>
   
 </body>
+
+  <script>
+
+    const requestURL = `http://api.unsplash.com/search/photos?query=${searchInput}&client_id=GGUMibw9WtG9a8bPfHHzNa0mJXPGY4jcjmL--uXROQA`
+    const searchButton = document.querySelector('.searchButton')
+    const imagesList = document.getElementById('imagesList')
+    const searchInput = document.getElementById('searchInput')
+
+    searchInput.addEventListener('keyup', (event) => {
+      event.target.value
+    })
+
+    searchButton.addEventListener('click', async () => {
+      let images = await getImages()
+      allImages.src = images
+    })
+
+    async function getImages() {
+      return fetch(requestURL)
+      .then((response) => response.json())
+      .then((data) => {
+        let searchResults = data.results;
+        return searchResults.urls.regular
+      })
+    }
+
+    const displaySearchResults = (images) => {
+      const htmlString = images
+        .map((images) => {
+          return `
+            <li class="imageResults">
+              <img src="${images.regular}"></img>
+              <p>Photographed by ${images.user.name}</p>
+            </li>
+          `;
+        })
+        .join('');
+      imagesList.innerHTML = htmlString;
+    }
+  </script>
+
 </html>
+
