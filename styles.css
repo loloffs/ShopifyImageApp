@@ -1,0 +1,7 @@
+.searchBar {
+  display: flex;
+}
+
+.searchButton {
+  background-color: red;
+}
