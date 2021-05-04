@@ -7,7 +7,7 @@ const imagesList = document.getElementById('imagesList')
 const searchInput = document.getElementById('searchInput')
 let images = []
 
-// implement this
+
 searchInput.addEventListener('keyup', (event) => {
   const searchInput = event.target.value.toLowerCase();
   const filteredImages = images.filter((image) => {
@@ -35,6 +35,7 @@ const displaySearchResults = (images) => {
     .map((images) => {
       return `
         <li class="imageResults">
+          test
           <img src="${images.regular}"></img>
           <p>Photographed by ${images.user.name}</p>
         </li>

@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
-// const path = require ('path');
-// app.use(express.static(path.join(__dirname, 'public')));
+const path = require ('path');
+app.use(express.static(__dirname + '/public'));
 // app.engine('html', require('ejs').renderFile);
 
 
@@ -12,3 +12,8 @@ app.get('/', (req, res) => {
 });
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+
+
+// app.get(`/?searchInput=${searchInput}`, (req, res) => {
+//   res.json()
+// })
