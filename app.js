@@ -45,3 +45,16 @@ const displaySearchResults = (images) => {
   imagesList.innerHTML = htmlString;
 }
 
+
+$(() => {
+    $("#searchInput").click(() => {
+      console.log("Searching");
+        $.ajax({
+      method: "GET",
+      url: `/?searchInput=${searchInput}`
+    }).done(() => {
+      console.log("Search complete");
+    });;
+  });
+});
+  
